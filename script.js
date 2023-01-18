@@ -1,5 +1,6 @@
 const hod = []
 const vysledek = [];
+const total = [];
 
 
 // throw coins 3x
@@ -10,10 +11,20 @@ function getThrowResult(min, max) {
     let mince = Math.round(Math.random() * (max - min) + min);
     hod.push(mince);
     }
+
+  // remove mince if exist
+  if (document.getElementById("mince")) {
+    let node = document.getElementById("mince");
+    if (node.parentNode) {
+      node.parentNode.removeChild(node);
+      console.log(node)
+    }
+  }
+
   // display coins
   const mince_container = document.createElement("div");
   mince_container.id = "mince";
-  mince_container.appendChild()
+  //mince_container.appendChild(mince_container)
 
   for (const i of hod) {     
     const element = document.getElementById("hod"); 
@@ -38,44 +49,4 @@ function getThrowResult(min, max) {
   document.getElementById("soucet").innerHTML = soucetH;
 
   }
-
-  // Remove element
-  function removeElement(id) {
-    elementID = document.getElementById(id)
-    if (elemID) {   
-      elemID.parentNode.removeChild(elemID);     
-    } 
-
-  }
  
-
-
-
-
-
-
-/* document.getElementById("vysledek").innerHTML = throwIt;
-document.getElementById("hod").innerHTML = hod;
-let hodLen = hod.length
-document.getElementById("hodLen").innerHTML = hodLen;
-if (mince = 2) {
-      mince = 2*2
-    } else {
-        mince = 2*3
-      }
-
-for (let i = 0; i < vysledek.length; i++) {
-    if ((i = 2)) {
-      i = i * 2;
-      soucet = soucet + i;
-    } else {
-      i = i * 3;
-      soucet = soucet + i;
-    }
-    document.getElementById("soucet").innerHTML = soucet;
-  }
-
-  const li = document.getElementById("seznam");
-  let html = "<span>ahoj</span>";
-  li.insertAdjacentHTML("afterbegin", html);
-*/
