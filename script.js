@@ -1,24 +1,29 @@
-const hod = []
+
 const vysledek = [];
 const total = [];
 
 
 // throw coins 3x
 function getThrowResult(min, max) {
-  
+  const hod = [];
   // throw 3 coins
   for (let i = 0; i < 3; i++) {
     let mince = Math.round(Math.random() * (max - min) + min);
     hod.push(mince);
+    document.getElementById("hod").innerHTML = hod;
     }
 
-  // remove mince if exist
-  if (document.getElementById("mince")) {
-    let node = document.getElementById("mince");
-    if (node.parentNode) {
-      node.parentNode.removeChild(node);
-      console.log(node)
-    }
+  // remove displayed mince if exist
+  if (document.getElementById("displayed_mince")) {
+    let uzel = document.getElementById("mince");
+    let smazat = document.getElementById("displayed_mince");
+    while (uzel.firstChild) {
+      let i = 0;
+      uzel.removeChild(uzel.firstChild);
+      console.log(uzel.firstChild);
+      i+=1;
+      console.log(i);
+    }     
   }
 
   // display coins
