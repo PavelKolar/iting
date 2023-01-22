@@ -2,26 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="i-ting" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
-    <div class="header">I-ting</div>
-    <div><p>Prastará čínská věštírna</p></div>
-    
-    <div id="content" class="content">
-      <br/>
-      <button id="throw" type="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> <br />
-      <button id="again" type="button" onclick="again()">Znovu</button>
-      <div id="throw_result"></div>
-      <br/>
-      <p>Soucet</p>
-      <div>
-        <p id="soucet"></p>
-      </div>
-      <p id="display_result">      
-      </p>
+    <div class="row"> 
+      <div class ="left">
+      </div>   
+        <div class="middle">
+          <p class="header">I-ting</p>
+          <p>Prastará čínská věštírna</p>
+          <br/>
+          <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> 
+          <br />
+          <button id="again" type="button" class="button" onclick="again()">Znovu</button>
+            <p id="throw_result">
+            </p>
+          <br />
+          <p id="display_result">      
+          </p>
+        </div>
+    <div class="right">      
     </div>
+  </div>
 
     <script src="script.js"></script>
   </body>

@@ -8,7 +8,6 @@ function getThrowResult(min, max) {
   for (let i = 0; i < 3; i++) {
     let mince = Math.round(Math.random() * (max - min) + min);
     throw_result.push(mince);
-    //document.getElementById("throw_result").innerHTML = throw_result;
     }
 
   // remove displayed mince if exist
@@ -29,7 +28,7 @@ function getThrowResult(min, max) {
     if (i === 2) {
       let img = document.createElement("img");
       img.src = "img/mince2.png";
-      img.id = "displayed_coin";
+      img.id = "displayed_coin";;
       let src = document.getElementById("mince");
       src.appendChild(img);
     } else if (i === 3) {
@@ -43,7 +42,6 @@ function getThrowResult(min, max) {
   // count coins and add it to array
   let coin_sum = throw_result.reduce((a, b) => a + b, 0);
   total.push(coin_sum);
-  //document.getElementById("soucet").innerHTML = total;
 
   // create div element for results of throws
   const cara_container = document.createElement("div");
