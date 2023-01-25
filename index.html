@@ -2,30 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="i-ting" content="width=device-width, initial-scale=1.0">
+    <meta name="i-ting" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <div class="row"> 
-      <div class ="left">
-      </div>   
-        <div class="middle">
-          <p class="header">I-ting</p>
-          <p>Prastará čínská věštírna</p>
-          <br/>
-          <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> 
-          <br />
+    
+        <div class="column">
+          <h1 class="header">I-ting</h1>
+          <h2>Prastará čínská věštírna</h2>
+          <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> <br />
           <button id="again" type="button" class="button" onclick="again()">Znovu</button>
-            <p id="throw_result">
-            </p>
-          <br />
-          <p id="display_result">      
-          </p>
+          <div id="throw_result">
+            <div id="mince">
+              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
+              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
+              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
+            </div>
+          </div>
+          <div id="display_result" class = "display_throws">      
+          </div>
         </div>
-    <div class="right">      
-    </div>
-  </div>
+      
 
     <script src="script.js"></script>
   </body>
