@@ -1,6 +1,7 @@
 const result = [];
 const total = [];
 const total_trans = [];
+var throw_count = 6;
 
 
 function getThrowResult(min, max) {
@@ -18,6 +19,14 @@ function getThrowResult(min, max) {
     let mince = Math.round(Math.random() * (max - min) + min);
     throw_result.push(mince);
     }
+  // change text info   
+  throw_count-=1;
+  if (throw_count===0) {
+    document.getElementById("throw_count").innerHTML = "Hotovo.";
+    document.getElementById("throw_count_again").innerHTML = "Znovu?";
+  } else {
+  document.getElementById("throw_count").innerHTML = "Vhoď mincemi ještě  "+throw_count+" krát.";
+  }
 
   // display coins
   for (const i of throw_result) {     
@@ -56,6 +65,7 @@ function getThrowResult(min, max) {
     document.getElementById("throw").disabled = true;
     throw_result.length = 0;
   }
+  // change button text after throw
 }
 
 
@@ -83,10 +93,15 @@ function find_transition() {
    }
    console.log(total_trans);
    console.log(total);
-   show_transition_result();
+   if (total_trans.toString()==total.toString()) {
+    console.log("true");
+   } else {
+    console.log("false");
+    show_transition_result();
+   }
+   // if there is a transition show it
 }
   
-
 function show_result(coin_sum) {  
   if (coin_sum === 6){
     displayResult(coin_sum);
@@ -102,12 +117,18 @@ function show_result(coin_sum) {
 function show_transition_result() {
   let i = 0;
   while (i < total_trans.length) {
-    console.log(total_trans[i]);
-    i++;
-  }  
+    if (total_trans[i] === 6) {
+      console.log("sestka");
+    } else if (total_trans[i] === 7) {
+      console.log("sedmicka");
+    } else if (total_trans[i] === 8) {
+      console.log("osmicka");
+    } else if (total_trans[i] === 9) {
+      console.log("devitka");
+    } 
+    i++;   
+  }
 }
-
-
 // start again
 function again() {
   result.length = 0;

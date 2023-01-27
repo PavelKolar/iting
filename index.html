@@ -2,30 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="i-ting" >
+    <meta name="I-ting" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     
-        <div class="column">
-          <h1 class="header">I-ting</h1>
-          <h2>Prastará čínská věštírna</h2>
-          <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> <br />
-          <button id="again" type="button" class="button" onclick="again()">Znovu</button>
-          <div id="throw_result">
-            <div id="mince">
-              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
-              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
-              <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
-            </div>
-          </div>
-          <div id="display_result" class = "display_throws">      
-          </div>
+    <div class="column">
+      <h1>I-ting</h1>
+      <h2>PRASTARÁ ČÍNSKÁ VĚŠTÍRNA</h2>
+      <span id="throw_count" class="throw_count">Začni kliknutím na tlačítko.
+      </span>
+      <span id="throw_count_again" onclick="again()">
+      </span>
+      <br /><br />
+      <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Hoď mincemi</button> 
+      <br />
+      <br />
+      <div id="throw_result">
+        <div id="mince">
+          <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
+          <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
+          <img src="img/mince.png" id="displayed_coin" class="displayed_coin">
         </div>
-      
+      </div>
+        <div>Výsledek</div>
+      <div id="display_result" class = "display_throws">      
+      </div>
 
-    <script src="script.js"></script>
+      <div id="mince_2">
+      </div>
+
+      <script src="script.js"></script>
+      <script src="data.js"></script>
+    </div>
   </body>
 </html>
