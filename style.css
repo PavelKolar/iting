@@ -33,7 +33,7 @@ h1 {
 	cursor:pointer;
 	color:#050505;
 	font-family:Georgia;
-	font-size:21px;
+	font-size:26px;
 	font-weight:bold;
 	padding:9px 24px;
 	text-decoration:none;
@@ -67,7 +67,11 @@ h1 {
   padding: 8px;
 }
 
-.throw_count {
+#throw_count {
   margin: 0px;
-  font: size 30px;
+  font-size: 150%;
+}
+#throw_count_again {
+  font-size: 150%;
+  color:blue;
 }
