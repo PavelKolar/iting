@@ -1,22 +1,16 @@
 
 body {
-  background-image: url("#");
   font-family: 'Cinzel', Georgia, serif;
-  margin: 0;
-  padding: 0;
   border: 0;
 }
 
-h1 {
-  top: 0px;
+#header {
   color:rgb(30, 30, 31);
-  font-size: 600%;
-  font-weight: 700;
+  font-size: 400%;
+  font-weight: 600;
 }
 
 .column {
-  top: 0;
-  padding: 0px;
   text-align: center;
   background-color: transparent;
   height: 500px;
@@ -50,17 +44,14 @@ h1 {
 	position:relative;
 	top:1px;
   color:darkgray;
+  cursor: not-allowed;
 }
 
-
-.displayed_coin {
+#displayed_coin {
   display:inline;
   padding: 5px;
 }
 
-.display_throws {
-  margin: auto;
-}
 .displayed_result_image {
   margin: auto;
   display: block;
@@ -69,9 +60,17 @@ h1 {
 
 #throw_count {
   margin: 0px;
-  font-size: 150%;
+  font-size: 130%;
 }
 #throw_count_again {
-  font-size: 150%;
+  font-size: 130%;
   color:blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#explanation_number, #explanation_number_trans {
+  font-size: 130%;
+  color: gray;
+  padding: 20px;
 }
