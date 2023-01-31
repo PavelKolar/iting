@@ -17,14 +17,15 @@ function getThrowResult(min, max) {
   for (let i = 0; i < 3; i++) {
     let mince = Math.round(Math.random() * (max - min) + min);
     throw_result.push(mince);
+    console.log("Throw result:" + throw_result)
     }
   // change text info   
   throw_count-=1;
   if (throw_count===0) {
-    document.getElementById("throw_count").innerHTML = "Hotovo. ";
-    document.getElementById("throw_count_again").innerHTML = "Znovu?";
+    document.getElementById("throw_count").innerHTML = "Done. ";
+    document.getElementById("throw_count_again").innerHTML = "Again?";
   } else {
-  document.getElementById("throw_count").innerHTML = "Vhoď mincemi ještě  "+throw_count+" krát.";
+  document.getElementById("throw_count").innerHTML = "Flip coins  "+throw_count+" more times.";
   }
   // display coins throws
   for (const i of throw_result) {     
@@ -34,14 +35,12 @@ function getThrowResult(min, max) {
       let img = document.createElement("img");
       img.src = "img/mince2.gif";
       img.id = "displayed_coin";
-      img.className = "displayed_coin";
       let src = document.getElementById("mince");
       src.appendChild(img);
     } else if (i === 3) {
        let img = document.createElement("img");
        img.src = "img/mince3.gif";
        img.id = "displayed_coin";
-       img.className = "displayed_coin";
        let src = document.getElementById("mince");
        src.appendChild(img);
     }
@@ -52,7 +51,9 @@ function getThrowResult(min, max) {
   show_result(coin_sum)
   // end after 6 throws
   if (total.length === 6) {
-    show_explanation(search_data(total)); // show explanation
+    console.log("Total: " + total)
+    show_explanation(search_data(total));
+    console.log("Total_new: " + total_new) // show explanation
     find_transition();  // hledej a zobraz  
     // clear settings
     document.getElementById("throw").disabled = true;
@@ -63,11 +64,11 @@ function getThrowResult(min, max) {
 function displayResult(coin_sum) {
     coin_sum.toString(coin_sum);
     let img = document.createElement("img");
-    img.src = "img/" + coin_sum + ".png";
+    img.src = "img/" + coin_sum + ".gif";
     img.id = "display_container";
-    img.className = "displayed_result_image";
     let src = document.getElementById("display_result");
-    src.appendChild(img); 
+    let first = document.getElementById("display_container");
+    src.insertBefore(img, first); 
 }
 
 function find_transition() {
@@ -82,9 +83,8 @@ function find_transition() {
     }
     i++;
    }
-   console.log("transition:" + total_trans);
    if (total_trans.toString()!=total.toString()) {
-    console.log("Before transition " + total_trans);
+    console.log("Total_trans: " + total_trans);
     total_new.length=0;
     show_explanation_trans(search_data(total_trans));
    } 
@@ -123,7 +123,6 @@ function search_data(sequence) {
     i++;
    } 
   const toFind = total_new.toString();
-  console.log(toFind);
   const searchIndex = explanation.find((s) => s.Sequence === toFind);
   return searchIndex;
 }
@@ -132,6 +131,8 @@ function show_explanation(func) {
   const explanation = func;
   document.getElementById("explanation_number").innerHTML = explanation.Number +". "+ explanation.Title;
   document.getElementById("explanation_text").innerHTML = explanation.Text;
+  document.getElementById("explanation_judgment").innerHTML = explanation.Judgment;
+  document.getElementById("explanation_image").innerHTML = explanation.Image;
 
 }
 
@@ -139,6 +140,8 @@ function show_explanation_trans(func) {
   const explanation = func;
   document.getElementById("explanation_number_trans").innerHTML = explanation.Number +". "+ explanation.Title;
   document.getElementById("explanation_text_trans").innerHTML = explanation.Text;
+  document.getElementById("explanation_judgment_trans").innerHTML = explanation.Judgment;
+  document.getElementById("explanation_image_trans").innerHTML = explanation.Image;
 }
 
 // restart
@@ -148,4 +151,20 @@ function again() {
   document.getElementById("throw").disabled = false;
   //removeDisplayedCoins();
   location.reload(); 
+}
+
+function flip_string() {
+  for (let x=0;x<70;x++) {
+      const seq_new = [];
+      let seq_old = explanation[x].Sequence.toString();
+      //console.log(seq_old);
+      let i = seq_old.length-1;
+      for (i; i>-1; i--) {
+        seq_new.push(seq_old[i])
+      }
+      for (let i=1;i<6;i++){
+      seq_new.splice(i, 1);
+      }
+      console.log(seq_new.toString());
+      }
 }

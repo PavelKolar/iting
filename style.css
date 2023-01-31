@@ -52,10 +52,14 @@ body {
   padding: 5px;
 }
 
-.displayed_result_image {
+#display_result{
+  padding: 20px;
+}
+
+#display_container {
   margin: auto;
   display: block;
-  padding: 8px;
+  padding: 5px;
 }
 
 #throw_count {
@@ -73,4 +77,13 @@ body {
   font-size: 130%;
   color: gray;
   padding: 20px;
+}
+
+#explanation_judgment, #explanation_judgment_trans {
+  font-size: 110%;
+  color: red;
+}
+
+#explanation_image, #explanation_image_trans {
+  font-size: 110%;
 }
