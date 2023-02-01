@@ -17,7 +17,6 @@ function getThrowResult(min, max) {
   for (let i = 0; i < 3; i++) {
     let mince = Math.round(Math.random() * (max - min) + min);
     throw_result.push(mince);
-    console.log("Throw result:" + throw_result)
     }
   // change throws count
   throw_count-=1;
