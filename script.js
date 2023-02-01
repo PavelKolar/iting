@@ -1,8 +1,8 @@
-const result = []; // vysledek jednoho hodu
-const total = []; // vyseledek hodů
-const total_new = []; // výsledek hodů převedený na 7 a 8
-const total_trans = []; // výsledek hodů transformovaný o přechodné stavy 
-var throw_count = 6; // počet hodů, použije se při počítání iterací
+const result = []; // result of one throw
+const total = []; // results of 6 throws (full)
+const total_new = []; // twisted results (6=8, 7=8)
+const total_trans = []; // transformed results ()
+var throw_count = 6; // numbers of throws
 
 function getThrowResult(min, max) {
    // remove displayed mince if exist
@@ -19,7 +19,7 @@ function getThrowResult(min, max) {
     throw_result.push(mince);
     console.log("Throw result:" + throw_result)
     }
-  // change text info   
+  // change throws count
   throw_count-=1;
   if (throw_count===0) {
     document.getElementById("throw_count").innerHTML = "Done. ";
@@ -45,16 +45,14 @@ function getThrowResult(min, max) {
        src.appendChild(img);
     }
   }
-  // count coins and add it to array
+  // count result and add it to array
   let coin_sum = throw_result.reduce((a, b) => a + b, 0);
   total.push(coin_sum);
   show_result(coin_sum)
-  // end after 6 throws
+  // end after 6 throws and show results
   if (total.length === 6) {
-    console.log("Total: " + total)
     show_explanation(search_data(total));
-    console.log("Total_new: " + total_new) // show explanation
-    find_transition();  // hledej a zobraz  
+    find_transition(); 
     // clear settings
     document.getElementById("throw").disabled = true;
     throw_result.length = 0;
@@ -84,7 +82,6 @@ function find_transition() {
     i++;
    }
    if (total_trans.toString()!=total.toString()) {
-    console.log("Total_trans: " + total_trans);
     total_new.length=0;
     show_explanation_trans(search_data(total_trans));
    } 
@@ -102,7 +99,6 @@ function show_result(coin_sum) {
   }
 }
 
-// remove displayed coins
 function removeDisplayedCoins() {
   let rem_node = document.getElementById("mince");
   while (rem_node.firstChild) {
@@ -112,7 +108,7 @@ function removeDisplayedCoins() {
 
 function search_data(sequence) {
   let i = 0;
-  while (i< sequence.length) {  //převést šesty a devítky na sedmičky a osmičky
+  while (i< sequence.length) {  //twist 6 and 9 results
       if (sequence[i] === 7 || sequence[i] === 8) {
       total_new.push(sequence[i]);
     } else if (sequence[i] === 6) {
@@ -133,7 +129,6 @@ function show_explanation(func) {
   document.getElementById("explanation_text").innerHTML = explanation.Text;
   document.getElementById("explanation_judgment").innerHTML = explanation.Judgment;
   document.getElementById("explanation_image").innerHTML = explanation.Image;
-
 }
 
 function show_explanation_trans(func) {
@@ -148,23 +143,9 @@ function show_explanation_trans(func) {
 function again() {
   result.length = 0;
   total.length = 0;
+  total_new.length = 0;
+  total_trans.length=0;
+  throw_count = 6;
   document.getElementById("throw").disabled = false;
-  //removeDisplayedCoins();
   location.reload(); 
-}
-
-function flip_string() {
-  for (let x=0;x<70;x++) {
-      const seq_new = [];
-      let seq_old = explanation[x].Sequence.toString();
-      //console.log(seq_old);
-      let i = seq_old.length-1;
-      for (i; i>-1; i--) {
-        seq_new.push(seq_old[i])
-      }
-      for (let i=1;i<6;i++){
-      seq_new.splice(i, 1);
-      }
-      console.log(seq_new.toString());
-      }
 }
