@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="I-ching" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TV5PD768L2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-TV5PD768L2');
-    </script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="I-ching">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TV5PD768L2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TV5PD768L2');
+  </script>
+</head>
+<body>
+  <div class="column">
+    <span id="header">I-Ching</span>
+    <h2>Ancient chinese oracle</h2>
+    <span id="throw_count">Flip coins 6 times.</span>
+    <span id="throw_count_again" role="button" tabindex="0" aria-label="Throw again"></span>
+    <br><br>
+    <button id="throw" type="button" class="button">Toss coins</button>
+    <br><br>
 
-  <body>    
-    <div class="column">
-      <span id="header">I-Ching</span>
-      <h2>Ancient chinese oracle</h2>
-      <span id="throw_count">Flip coins 6 times.
-      </span>
-      <span id="throw_count_again" onclick="again()">
-      </span>
-      <br /><br />
-      <button id="throw" type="button" class="button" onclick="getThrowResult(2,3)">Toss coins</button> 
-      <br />
-      <br />
-      <div id="throw_result">
-        <div id="mince">
-          <img src="img/mince.png" id="displayed_coin">
-          <img src="img/mince.png" id="displayed_coin">
-          <img src="img/mince.png" id="displayed_coin">
-        </div>
+    <div id="throw_result">
+      <div id="mince" aria-hidden="true">
+        <img src="img/mince.png" class="displayed-coin" alt="coin face">
+        <img src="img/mince.png" class="displayed-coin" alt="coin face">
+        <img src="img/mince.png" class="displayed-coin" alt="coin face">
       </div>
-      <div id="display_result">
-        <img id="display_container">     
-      </div> 
-       <div id="explanation_number"></div>
-       <div id="explanation_text"></div>
-       <div id="explanation_judgment"></div>     
-       <div id="explanation_image"></div>
-       <div id="explanation_number_trans"></div>
-       <div id="explanation_text_trans"></div>      
-       <div id="explanation_judgment_trans"></div>      
-       <div id="explanation_image_trans"></div>
-
-      <script src="script.js"></script>
-      <script src="data.js"></script>
     </div>
-  </body>
+
+    <div id="display_result" aria-live="polite"></div>
+
+    <div id="explanation_number"></div>
+    <div id="explanation_text"></div>
+    <div id="explanation_judgment"></div>
+    <div id="explanation_image"></div>
+    <div id="explanation_number_trans"></div>
+    <div id="explanation_text_trans"></div>
+    <div id="explanation_judgment_trans"></div>
+    <div id="explanation_image_trans"></div>
+
+    <!-- Load data first, then script -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </div>
+</body>
 </html>
