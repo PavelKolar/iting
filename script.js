@@ -1,3 +1,112 @@
+(function () {
+  // internal state
+  const result = []; // result of one throw (kept for compatibility if used elsewhere)
+  const total = []; // results of 6 throws (full)
+  let throwCount = 6; // number of throws
+
+  // Helper: inclusive random integer
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // Helper: clear node children safely
+  function clearElementChildren(id) {
+    const node = document.getElementById(id);
+    if (!node) return;
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  function updateThrowCountUI() {
+    const countEl = document.getElementById("throw_count");
+    const againEl = document.getElementById("throw_count_again");
+    if (!countEl) return;
+    if (throwCount <= 0) {
+      countEl.innerHTML = "Done. ";
+      if (againEl) againEl.innerHTML = "Again?";
+    } else {
+      countEl.innerHTML = "Flip coins " + throwCount + " more times.";
+    }
+  }
+
+  function getThrowResult(min, max) {
+    // clear previous displayed coins area
+    clearElementChildren("mince");
+
+    // throw 3 coins (integers between min and max inclusive)
+    const throw_result = [];
+    for (let i = 0; i < 3; i++) {
+      const mince = getRandomIntInclusive(min, max);
+      throw_result.push(mince);
+    }
+
+    // decrement and update UI
+    throwCount -= 1;
+    updateThrowCountUI();
+
+    // display coin images (create fresh images; avoid duplicate IDs)
+    const resultContainer = document.getElementById("throw_result");
+    if (resultContainer) {
+      // append images representing coin faces for this throw
+      throw_result.forEach((val) => {
+        const img = document.createElement("img");
+        img.className = "displayed_coin";
+        // fall back to a generic image path if not 2/3
+        if (val === 2) {
+          img.src = "img/mince2.gif";
+        } else if (val === 3) {
+          img.src = "img/mince3.gif";
+        } else {
+          img.src = "img/mince" + val + ".gif";
+        }
+        resultContainer.appendChild(img);
+      });
+    }
+
+    // compute sum and record
+    const coin_sum = throw_result.reduce((a, b) => a + b, 0);
+    total.push(coin_sum);
+    show_result(coin_sum);
+
+    // after 6 throws, show explanations and disable throw button
+    if (total.length === 6) {
+      const explanationFound = search_data(total);
+      if (explanationFound) show_explanation(explanationFound);
+      find_transition();
+      const throwBtn = document.getElementById("throw");
+      if (throwBtn) throwBtn.disabled = true;
+    }
+  }
+
+  function displayResult(coin_sum) {
+    // create a new image for the display area
+    const img = document.createElement("img");
+    img.src = "img/" + coin_sum + ".gif";
+    img.className = "display_container";
+    const src = document.getElementById("display_result");
+    if (!src) return;
+    // insert before the first child (if exists) otherwise append
+    if (src.firstChild) {
+      src.insertBefore(img, src.firstChild);
+    } else {
+      src.appendChild(img);
+    }
+  }
+
+  function find_transition() {
+    // produce a mapped sequence: keep 7/8 as is; map 6->7, 9->8
+    const mapped = total.map((v) => {
+      if (v === 7 || v === 8) return v;
+      if (v === 6) return 7;
+      if (v === 9) return 8;
+      return v;
+    });
+
+    // only show transformed explanation if mapping actually changed any element
+    if (mapped.toString() !== total.toString()) {
+      const explanationFound = search_data(mapped);
+      if (explanationFound) show_ex*
 const result = []; // result of one throw
 const total = []; // results of 6 throws (full)
 const total_new = []; // twisted results (6=8, 7=8)
